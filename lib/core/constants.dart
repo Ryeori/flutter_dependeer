@@ -1,8 +1,15 @@
-const String pubspecyamlPath = '\\pubspec.yaml';
-const String androidManifestPath =
-    'android\\app\\src\\main\\AndroidManifest.xml';
-const String androidAppBuildGradlePath = 'android\\app\\build.gradle';
-const String androidRootBuildGradlePath = 'android\\build.gradle';
-const String androidGradlePropertiesPath = 'android\\gradle.properties';
-const String iosInfoplist = 'ios\\Runner\\info.plist';
-const String iosAppDelegate = 'ios\\Runner\\AppDelegate.swift';
+import 'package:flutter_dependy/core/utils/path_utils.dart';
+
+String pubspecyamlPath = generatePathtWithDashes(['pubspec.yaml']);
+String androidManifestPath = generatePathtWithDashes(
+    ['android', 'app', 'src', 'main', 'AndroidManifest.xml']);
+// 'android''app''src''main''AndroidManifest.xml';
+String androidAppBuildGradlePath =
+    generatePathtWithDashes(['android', 'app', 'build.gradle']);
+String androidRootBuildGradlePath =
+    generatePathtWithDashes(['android', 'build.gradle']);
+String androidGradlePropertiesPath =
+    generatePathtWithDashes(['android', 'gradle.properties']);
+String iosInfoplist = generatePathtWithDashes(['ios', 'Runner', 'info.plist']);
+String iosAppDelegate =
+    generatePathtWithDashes(['ios', 'Runner', 'AppDelegate.swift']);
