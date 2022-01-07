@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.14)
-project(flutter_dependy LANGUAGES CXX)
+project(flutter_dependeer LANGUAGES CXX)
 
-set(BINARY_NAME "flutter_dependy")
+set(BINARY_NAME "flutter_dependeer")
 
 cmake_policy(SET CMP0063 NEW)
 

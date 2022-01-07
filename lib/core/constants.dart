@@ -1,4 +1,4 @@
-import 'package:flutter_dependy/core/utils/path_utils.dart';
+import 'package:flutter_dependeer/core/utils/path_utils.dart';
 
 String pubspecyamlPath = generatePathtWithDashes(['pubspec.yaml']);
 String androidManifestPath = generatePathtWithDashes(

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_dependy/features/drap_and_drop/drag_and_drop_overlay.dart';
-import 'package:flutter_dependy/features/main/main_cubit/main_cubit.dart';
-import 'package:flutter_dependy/features/tutorial/tutorial_page.dart';
+import 'package:flutter_dependeer/features/drap_and_drop/drag_and_drop_overlay.dart';
+import 'package:flutter_dependeer/features/main/main_cubit/main_cubit.dart';
+import 'package:flutter_dependeer/features/tutorial/tutorial_page.dart';
 
 class MainPage extends StatelessWidget {
   const MainPage({Key? key}) : super(key: key);
