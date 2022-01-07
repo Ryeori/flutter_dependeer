@@ -7,7 +7,6 @@ import 'package:file_picker/file_picker.dart';
 import 'package:flutter_dependy/core/constants.dart';
 import 'package:flutter_dependy/core/models/pubspecyaml_dto/pubspecyaml_dto_model.dart';
 import 'package:meta/meta.dart';
-import 'package:flutter_dependy/core/models/project_dependency/project_dependency_model.dart';
 import "package:yaml/yaml.dart";
 
 part 'main_state.dart';

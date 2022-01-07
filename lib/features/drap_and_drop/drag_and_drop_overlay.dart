@@ -1,5 +1,4 @@
 import 'package:desktop_drop/desktop_drop.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class DrapAndDropOverlay extends StatefulWidget {
@@ -44,13 +43,13 @@ class _DrapAndDropOverlayState extends State<DrapAndDropOverlay> {
                   loadNewFiles = false;
                   Navigator.pop(context);
                 },
-                child: Text('Stay with current')),
+                child: const Text('Stay with current')),
             TextButton(
                 onPressed: () {
                   loadNewFiles = true;
                   Navigator.pop(context);
                 },
-                child: Text('Replace with new'))
+                child: const Text('Replace with new'))
           ],
         ));
       },

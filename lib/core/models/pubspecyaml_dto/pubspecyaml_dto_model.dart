@@ -2,9 +2,7 @@
 //
 //     final pubspecyamlDtoModel = pubspecyamlDtoModelFromMap(jsonString);
 
-import 'package:meta/meta.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'dart:convert';
 
 part 'pubspecyaml_dto_model.freezed.dart';
 part 'pubspecyaml_dto_model.g.dart';
