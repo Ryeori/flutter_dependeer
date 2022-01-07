@@ -1,11 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dependeer/features/drap_and_drop/drag_and_drop_overlay.dart';
-import 'package:flutter_dependeer/features/main/main_cubit/main_cubit.dart';
+import 'package:flutter_dependeer/features/home/home_cubit/home_cubit.dart';
 import 'package:flutter_dependeer/features/tutorial/tutorial_page.dart';
 
-class MainPage extends StatelessWidget {
-  const MainPage({Key? key}) : super(key: key);
+class HomePage extends StatefulWidget {
+  const HomePage({Key? key}) : super(key: key);
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  late final HomeCubit homeCubit;
+  bool isProjectLoaded = false;
+  Map<String, dynamic> _dependecies = {};
+
+  @override
+  void initState() {
+    homeCubit = BlocProvider.of<HomeCubit>(context);
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -14,22 +29,31 @@ class MainPage extends StatelessWidget {
         child: DrapAndDropOverlay(
           //TODO: Replace "details" in bloc with dto
           onDragDone: (details) {
-            BlocProvider.of<MainCubit>(context).initProject(details: details);
+            homeCubit.initProject(details: details);
           },
           height: 300,
           width: 300,
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              BlocBuilder<MainCubit, MainState>(
+              BlocConsumer<HomeCubit, HomeState>(
+                listener: (context, state) {
+                  isProjectLoaded = state is HomeDependenciesLoadedState;
+                  setState(() {
+                    if (state is HomeDependenciesLoadedState) {
+                      _dependecies
+                        ..addAll(state.pubspecyaml.dependencies)
+                        ..addAll(state.pubspecyaml.devDependencies);
+                    } else {
+                      _dependecies = {};
+                    }
+                  });
+                },
                 builder: (context, state) {
-                  if (state is MainProjectErrorState) {
+                  if (state is HomeProjectErrorState) {
                     return Text(state.errorText);
                   }
-                  if (state is MainDependenciesLoadedState) {
-                    final Map<String, dynamic> _dependecies = {}
-                      ..addAll(state.pubspecyaml.dependencies)
-                      ..addAll(state.pubspecyaml.devDependencies);
+                  if (state is HomeDependenciesLoadedState) {
                     return Expanded(
                       child: ListView.separated(
                         shrinkWrap: true,
@@ -69,14 +93,24 @@ class MainPage extends StatelessWidget {
                   return const SizedBox.shrink();
                 },
               ),
-              ElevatedButton(
-                  onPressed: () {
-                    BlocProvider.of<MainCubit>(context).initProject();
-                  },
-                  child: const Padding(
-                    padding: EdgeInsets.all(25),
-                    child: Text('Open project folder'),
-                  ))
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  if (isProjectLoaded)
+                    OutlinedButton(
+                        onPressed: homeCubit.unloadProject,
+                        child: const Padding(
+                          padding: EdgeInsets.all(25),
+                          child: Text('Unload Project'),
+                        )),
+                  ElevatedButton(
+                      onPressed: homeCubit.initProject,
+                      child: const Padding(
+                        padding: EdgeInsets.all(25),
+                        child: Text('Open project folder'),
+                      ))
+                ],
+              )
             ],
           ),
         ),

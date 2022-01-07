@@ -9,10 +9,10 @@ import 'package:flutter_dependeer/core/models/pubspecyaml_dto/pubspecyaml_dto_mo
 import 'package:meta/meta.dart';
 import "package:yaml/yaml.dart";
 
-part 'main_state.dart';
+part 'home_state.dart';
 
-class MainCubit extends Cubit<MainState> {
-  MainCubit() : super(MainInitialState());
+class HomeCubit extends Cubit<HomeState> {
+  HomeCubit() : super(HomeInitialState());
 
   void initProject({DropDoneDetails? details}) async {
     late final String projectPath;
@@ -23,7 +23,7 @@ class MainCubit extends Cubit<MainState> {
       projectPath = await _getProjectPath();
     }
     if (projectPath.isEmpty) {
-      emit(MainProjectErrorState(projectPath));
+      emit(HomeProjectErrorState(projectPath));
     } else {
       final File pubspecFile = File('$projectPath$pubspecyamlPath');
       final bool isPubspecExist = pubspecFile.existsSync();
@@ -31,35 +31,40 @@ class MainCubit extends Cubit<MainState> {
         final PubspecyamlDtoModel? parsedPubspecyaml =
             _tryParsePubspecyaml(pubspecFile.readAsStringSync());
         if (parsedPubspecyaml != null) {
-          emit(MainDependenciesLoadedState(
+          emit(HomeDependenciesLoadedState(
               projectPath: projectPath, pubspecyaml: parsedPubspecyaml));
         } else {
-          emit(MainProjectErrorState(
+          emit(HomeProjectErrorState(
               'Pubspec.yaml parsing error. Please check it.'));
         }
       } else {
-        emit(MainProjectErrorState(
+        emit(HomeProjectErrorState(
             'no project was found in folder, try another folder'));
       }
     }
   }
-}
 
-PubspecyamlDtoModel? _tryParsePubspecyaml(String pubspecyamlString) {
-  try {
-    final YamlMap parsedYaml = loadYaml(pubspecyamlString);
-    final pubspecDto =
-        PubspecyamlDtoModel.fromJson(json.decode(json.encode(parsedYaml)));
-    //TODO: REFACTOR
-    pubspecDto.dependencies.removeWhere((key, value) => value is! String);
-    pubspecDto.devDependencies.removeWhere((key, value) => value is! String);
-    return pubspecDto;
-  } catch (e) {
-    print('pubspec.yaml parse error');
+  void unloadProject() {
+    emit(HomeInitialState());
   }
-}
 
-Future<String> _getProjectPath() async {
-  final String projectPath = await FilePicker.platform.getDirectoryPath() ?? '';
-  return projectPath;
+  PubspecyamlDtoModel? _tryParsePubspecyaml(String pubspecyamlString) {
+    try {
+      final YamlMap parsedYaml = loadYaml(pubspecyamlString);
+      final pubspecDto =
+          PubspecyamlDtoModel.fromJson(json.decode(json.encode(parsedYaml)));
+      //TODO: REFACTOR
+      pubspecDto.dependencies.removeWhere((key, value) => value is! String);
+      pubspecDto.devDependencies.removeWhere((key, value) => value is! String);
+      return pubspecDto;
+    } catch (e) {
+      print('pubspec.yaml parse error');
+    }
+  }
+
+  Future<String> _getProjectPath() async {
+    final String projectPath =
+        await FilePicker.platform.getDirectoryPath() ?? '';
+    return projectPath;
+  }
 }

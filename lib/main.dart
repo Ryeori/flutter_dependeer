@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_dependeer/features/main/main_cubit/main_cubit.dart';
-import 'package:flutter_dependeer/features/main/main_page.dart';
+import 'package:flutter_dependeer/features/home/home_cubit/home_cubit.dart';
+import 'package:flutter_dependeer/features/home/home_page.dart';
 import 'package:window_manager/window_manager.dart';
 
 void main() async {
@@ -29,10 +29,10 @@ class MyApp extends StatelessWidget {
       home: MultiBlocProvider(
         providers: [
           BlocProvider(
-            create: (context) => MainCubit(),
+            create: (context) => HomeCubit(),
           ),
         ],
-        child: const MainPage(),
+        child: const HomePage(),
       ),
     );
   }
