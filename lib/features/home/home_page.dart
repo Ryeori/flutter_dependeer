@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_dependeer/core/widgets/dependency_card.dart';
 import 'package:flutter_dependeer/features/drap_and_drop/drag_and_drop_overlay.dart';
 import 'package:flutter_dependeer/features/home/home_cubit/home_cubit.dart';
 import 'package:flutter_dependeer/features/tutorial/tutorial_page.dart';
@@ -57,34 +58,31 @@ class _HomePageState extends State<HomePage> {
                     return Expanded(
                       child: ListView.separated(
                         shrinkWrap: true,
-                        itemCount: 2,
-                        scrollDirection: Axis.horizontal,
+                        itemCount: _dependecies.length + 1,
                         separatorBuilder: (context, index) {
                           return const VerticalDivider();
                         },
-                        itemBuilder: (context, columnIndex) {
-                          return Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: List.generate(
-                                _dependecies.length,
-                                (index) => InkWell(
-                                      onTap: () {
-                                        Navigator.push(context,
-                                            MaterialPageRoute(
-                                          builder: (context) {
-                                            return TutorialPage(
-                                                selectedDependency: _dependecies
-                                                    .entries
-                                                    .elementAt(index));
-                                          },
-                                        ));
+                        itemBuilder: (context, index) {
+                          return index == 0
+                              ? const DependencyHeaderCard()
+                              : InkWell(
+                                  onTap: () {
+                                    Navigator.push(context, MaterialPageRoute(
+                                      builder: (context) {
+                                        return TutorialPage(
+                                            selectedDependency: _dependecies
+                                                .entries
+                                                .elementAt(index));
                                       },
-                                      child: Text(columnIndex == 0
-                                          ? _dependecies.keys.elementAt(index)
-                                          : _dependecies.values
-                                              .elementAt(index)),
-                                    )),
-                          );
+                                    ));
+                                  },
+                                  child: DependencyCard(
+                                    title:
+                                        _dependecies.keys.elementAt(index - 1),
+                                    version: _dependecies.values
+                                        .elementAt(index - 1),
+                                    isVerified: true,
+                                  ));
                         },
                       ),
                     );

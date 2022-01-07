@@ -6,9 +6,9 @@ enum DependencyUserActionType { textInput, dropFile, userManualChanges }
 
 @freezed
 class DependencyTutorialStepModel with _$DependencyTutorialStepModel {
-  const factory DependencyTutorialStepModel(
-          {required String title,
-          required String stepDescription,
-          required List<DependencyUserActionType> stepUserActions}) =
-      _DependencyTutorialStepModel;
+  const factory DependencyTutorialStepModel({
+    required String title,
+    required String stepDescription,
+    required List<DependencyUserActionType> stepUserActions,
+  }) = _DependencyTutorialStepModel;
 }

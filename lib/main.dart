@@ -4,6 +4,7 @@ import 'package:flutter_dependeer/core/injections/get_it_configuration.dart';
 import 'package:flutter_dependeer/features/home/home_cubit/home_cubit.dart';
 import 'package:flutter_dependeer/features/home/home_page.dart';
 import 'package:window_manager/window_manager.dart';
+import 'features/tutorial/dependency_tutorial_cubit/dependency_tutorial_cubit.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -34,6 +35,9 @@ class MyApp extends StatelessWidget {
         providers: [
           BlocProvider(
             create: (context) => getIt<HomeCubit>(),
+          ),
+          BlocProvider(
+            create: (context) => getIt<DependencyTutorialCubit>(),
           ),
         ],
         child: const HomePage(),

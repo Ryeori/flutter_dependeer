@@ -20,11 +20,13 @@ class _$DependencyTutorialModelTearOff {
   _DependencyTutorialModel call(
       {required String title,
       required String id,
-      required String desctiption}) {
+      required String desctiption,
+      required List<DependencyTutorialStepModel> steps}) {
     return _DependencyTutorialModel(
       title: title,
       id: id,
       desctiption: desctiption,
+      steps: steps,
     );
   }
 }
@@ -37,6 +39,8 @@ mixin _$DependencyTutorialModel {
   String get title => throw _privateConstructorUsedError;
   String get id => throw _privateConstructorUsedError;
   String get desctiption => throw _privateConstructorUsedError;
+  List<DependencyTutorialStepModel> get steps =>
+      throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $DependencyTutorialModelCopyWith<DependencyTutorialModel> get copyWith =>
@@ -48,7 +52,11 @@ abstract class $DependencyTutorialModelCopyWith<$Res> {
   factory $DependencyTutorialModelCopyWith(DependencyTutorialModel value,
           $Res Function(DependencyTutorialModel) then) =
       _$DependencyTutorialModelCopyWithImpl<$Res>;
-  $Res call({String title, String id, String desctiption});
+  $Res call(
+      {String title,
+      String id,
+      String desctiption,
+      List<DependencyTutorialStepModel> steps});
 }
 
 /// @nodoc
@@ -65,6 +73,7 @@ class _$DependencyTutorialModelCopyWithImpl<$Res>
     Object? title = freezed,
     Object? id = freezed,
     Object? desctiption = freezed,
+    Object? steps = freezed,
   }) {
     return _then(_value.copyWith(
       title: title == freezed
@@ -79,6 +88,10 @@ class _$DependencyTutorialModelCopyWithImpl<$Res>
           ? _value.desctiption
           : desctiption // ignore: cast_nullable_to_non_nullable
               as String,
+      steps: steps == freezed
+          ? _value.steps
+          : steps // ignore: cast_nullable_to_non_nullable
+              as List<DependencyTutorialStepModel>,
     ));
   }
 }
@@ -90,7 +103,11 @@ abstract class _$DependencyTutorialModelCopyWith<$Res>
           $Res Function(_DependencyTutorialModel) then) =
       __$DependencyTutorialModelCopyWithImpl<$Res>;
   @override
-  $Res call({String title, String id, String desctiption});
+  $Res call(
+      {String title,
+      String id,
+      String desctiption,
+      List<DependencyTutorialStepModel> steps});
 }
 
 /// @nodoc
@@ -110,6 +127,7 @@ class __$DependencyTutorialModelCopyWithImpl<$Res>
     Object? title = freezed,
     Object? id = freezed,
     Object? desctiption = freezed,
+    Object? steps = freezed,
   }) {
     return _then(_DependencyTutorialModel(
       title: title == freezed
@@ -124,6 +142,10 @@ class __$DependencyTutorialModelCopyWithImpl<$Res>
           ? _value.desctiption
           : desctiption // ignore: cast_nullable_to_non_nullable
               as String,
+      steps: steps == freezed
+          ? _value.steps
+          : steps // ignore: cast_nullable_to_non_nullable
+              as List<DependencyTutorialStepModel>,
     ));
   }
 }
@@ -132,7 +154,10 @@ class __$DependencyTutorialModelCopyWithImpl<$Res>
 
 class _$_DependencyTutorialModel implements _DependencyTutorialModel {
   const _$_DependencyTutorialModel(
-      {required this.title, required this.id, required this.desctiption});
+      {required this.title,
+      required this.id,
+      required this.desctiption,
+      required this.steps});
 
   @override
   final String title;
@@ -140,10 +165,12 @@ class _$_DependencyTutorialModel implements _DependencyTutorialModel {
   final String id;
   @override
   final String desctiption;
+  @override
+  final List<DependencyTutorialStepModel> steps;
 
   @override
   String toString() {
-    return 'DependencyTutorialModel(title: $title, id: $id, desctiption: $desctiption)';
+    return 'DependencyTutorialModel(title: $title, id: $id, desctiption: $desctiption, steps: $steps)';
   }
 
   @override
@@ -154,7 +181,8 @@ class _$_DependencyTutorialModel implements _DependencyTutorialModel {
             const DeepCollectionEquality().equals(other.title, title) &&
             const DeepCollectionEquality().equals(other.id, id) &&
             const DeepCollectionEquality()
-                .equals(other.desctiption, desctiption));
+                .equals(other.desctiption, desctiption) &&
+            const DeepCollectionEquality().equals(other.steps, steps));
   }
 
   @override
@@ -162,7 +190,8 @@ class _$_DependencyTutorialModel implements _DependencyTutorialModel {
       runtimeType,
       const DeepCollectionEquality().hash(title),
       const DeepCollectionEquality().hash(id),
-      const DeepCollectionEquality().hash(desctiption));
+      const DeepCollectionEquality().hash(desctiption),
+      const DeepCollectionEquality().hash(steps));
 
   @JsonKey(ignore: true)
   @override
@@ -173,9 +202,11 @@ class _$_DependencyTutorialModel implements _DependencyTutorialModel {
 
 abstract class _DependencyTutorialModel implements DependencyTutorialModel {
   const factory _DependencyTutorialModel(
-      {required String title,
-      required String id,
-      required String desctiption}) = _$_DependencyTutorialModel;
+          {required String title,
+          required String id,
+          required String desctiption,
+          required List<DependencyTutorialStepModel> steps}) =
+      _$_DependencyTutorialModel;
 
   @override
   String get title;
@@ -183,6 +214,8 @@ abstract class _DependencyTutorialModel implements DependencyTutorialModel {
   String get id;
   @override
   String get desctiption;
+  @override
+  List<DependencyTutorialStepModel> get steps;
   @override
   @JsonKey(ignore: true)
   _$DependencyTutorialModelCopyWith<_DependencyTutorialModel> get copyWith =>

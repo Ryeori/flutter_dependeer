@@ -9,6 +9,8 @@ class DrapAndDropOverlay extends StatefulWidget {
   final double? width;
   final double? height;
   final Widget child;
+  final String? title;
+  final IconData? icon;
 
   const DrapAndDropOverlay(
       {Key? key,
@@ -18,6 +20,8 @@ class DrapAndDropOverlay extends StatefulWidget {
       this.onDragUpdated,
       this.width,
       this.height,
+      this.title,
+      this.icon,
       required this.child})
       : super(key: key);
 
@@ -125,15 +129,17 @@ class _DrapAndDropOverlayState extends State<DrapAndDropOverlay> {
                     curve: Curves.easeOutQuint,
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
-                      children: const [
+                      children: [
                         Icon(
-                          Icons.folder,
+                          widget.icon ?? Icons.folder,
                           size: 100,
                           color: Colors.white,
                         ),
                         Text(
-                          'Drag and Drop your project folder here',
-                          style: TextStyle(fontSize: 20, color: Colors.white),
+                          widget.title ??
+                              'Drag and Drop your project folder here',
+                          style: const TextStyle(
+                              fontSize: 20, color: Colors.white),
                         )
                       ],
                     )),
