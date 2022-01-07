@@ -6,11 +6,14 @@ import 'package:desktop_drop/desktop_drop.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter_dependeer/core/constants.dart';
 import 'package:flutter_dependeer/core/models/pubspecyaml_dto/pubspecyaml_dto_model.dart';
+import 'package:injectable/injectable.dart';
 import 'package:meta/meta.dart';
 import "package:yaml/yaml.dart";
 
 part 'home_state.dart';
 
+@LazySingleton()
+@Injectable()
 class HomeCubit extends Cubit<HomeState> {
   HomeCubit() : super(HomeInitialState());
 
