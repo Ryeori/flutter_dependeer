@@ -1,4 +1,4 @@
-# WIP flutter_dependy
+# WIP flutter_dependeer
 A desktop utility which makes work dependencies easier. App will automatically add platform dependent code for a dependencies. You will be able to store your own instructions for a dependencies or fetch them from a server. Auto resolving lower version conflicts (min sdk android version for ex) etc.
 
 ### To run the project
