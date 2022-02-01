@@ -21,11 +21,15 @@ class _$DependencyTutorialModelTearOff {
       {required String title,
       required String id,
       required String desctiption,
+      required ProjectDependencyModelType type,
+      required String version,
       required List<DependencyTutorialStepModel> steps}) {
     return _DependencyTutorialModel(
       title: title,
       id: id,
       desctiption: desctiption,
+      type: type,
+      version: version,
       steps: steps,
     );
   }
@@ -39,6 +43,8 @@ mixin _$DependencyTutorialModel {
   String get title => throw _privateConstructorUsedError;
   String get id => throw _privateConstructorUsedError;
   String get desctiption => throw _privateConstructorUsedError;
+  ProjectDependencyModelType get type => throw _privateConstructorUsedError;
+  String get version => throw _privateConstructorUsedError;
   List<DependencyTutorialStepModel> get steps =>
       throw _privateConstructorUsedError;
 
@@ -56,6 +62,8 @@ abstract class $DependencyTutorialModelCopyWith<$Res> {
       {String title,
       String id,
       String desctiption,
+      ProjectDependencyModelType type,
+      String version,
       List<DependencyTutorialStepModel> steps});
 }
 
@@ -73,6 +81,8 @@ class _$DependencyTutorialModelCopyWithImpl<$Res>
     Object? title = freezed,
     Object? id = freezed,
     Object? desctiption = freezed,
+    Object? type = freezed,
+    Object? version = freezed,
     Object? steps = freezed,
   }) {
     return _then(_value.copyWith(
@@ -87,6 +97,14 @@ class _$DependencyTutorialModelCopyWithImpl<$Res>
       desctiption: desctiption == freezed
           ? _value.desctiption
           : desctiption // ignore: cast_nullable_to_non_nullable
+              as String,
+      type: type == freezed
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as ProjectDependencyModelType,
+      version: version == freezed
+          ? _value.version
+          : version // ignore: cast_nullable_to_non_nullable
               as String,
       steps: steps == freezed
           ? _value.steps
@@ -107,6 +125,8 @@ abstract class _$DependencyTutorialModelCopyWith<$Res>
       {String title,
       String id,
       String desctiption,
+      ProjectDependencyModelType type,
+      String version,
       List<DependencyTutorialStepModel> steps});
 }
 
@@ -127,6 +147,8 @@ class __$DependencyTutorialModelCopyWithImpl<$Res>
     Object? title = freezed,
     Object? id = freezed,
     Object? desctiption = freezed,
+    Object? type = freezed,
+    Object? version = freezed,
     Object? steps = freezed,
   }) {
     return _then(_DependencyTutorialModel(
@@ -141,6 +163,14 @@ class __$DependencyTutorialModelCopyWithImpl<$Res>
       desctiption: desctiption == freezed
           ? _value.desctiption
           : desctiption // ignore: cast_nullable_to_non_nullable
+              as String,
+      type: type == freezed
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as ProjectDependencyModelType,
+      version: version == freezed
+          ? _value.version
+          : version // ignore: cast_nullable_to_non_nullable
               as String,
       steps: steps == freezed
           ? _value.steps
@@ -157,6 +187,8 @@ class _$_DependencyTutorialModel implements _DependencyTutorialModel {
       {required this.title,
       required this.id,
       required this.desctiption,
+      required this.type,
+      required this.version,
       required this.steps});
 
   @override
@@ -166,11 +198,15 @@ class _$_DependencyTutorialModel implements _DependencyTutorialModel {
   @override
   final String desctiption;
   @override
+  final ProjectDependencyModelType type;
+  @override
+  final String version;
+  @override
   final List<DependencyTutorialStepModel> steps;
 
   @override
   String toString() {
-    return 'DependencyTutorialModel(title: $title, id: $id, desctiption: $desctiption, steps: $steps)';
+    return 'DependencyTutorialModel(title: $title, id: $id, desctiption: $desctiption, type: $type, version: $version, steps: $steps)';
   }
 
   @override
@@ -182,6 +218,8 @@ class _$_DependencyTutorialModel implements _DependencyTutorialModel {
             const DeepCollectionEquality().equals(other.id, id) &&
             const DeepCollectionEquality()
                 .equals(other.desctiption, desctiption) &&
+            const DeepCollectionEquality().equals(other.type, type) &&
+            const DeepCollectionEquality().equals(other.version, version) &&
             const DeepCollectionEquality().equals(other.steps, steps));
   }
 
@@ -191,6 +229,8 @@ class _$_DependencyTutorialModel implements _DependencyTutorialModel {
       const DeepCollectionEquality().hash(title),
       const DeepCollectionEquality().hash(id),
       const DeepCollectionEquality().hash(desctiption),
+      const DeepCollectionEquality().hash(type),
+      const DeepCollectionEquality().hash(version),
       const DeepCollectionEquality().hash(steps));
 
   @JsonKey(ignore: true)
@@ -205,6 +245,8 @@ abstract class _DependencyTutorialModel implements DependencyTutorialModel {
           {required String title,
           required String id,
           required String desctiption,
+          required ProjectDependencyModelType type,
+          required String version,
           required List<DependencyTutorialStepModel> steps}) =
       _$_DependencyTutorialModel;
 
@@ -214,6 +256,10 @@ abstract class _DependencyTutorialModel implements DependencyTutorialModel {
   String get id;
   @override
   String get desctiption;
+  @override
+  ProjectDependencyModelType get type;
+  @override
+  String get version;
   @override
   List<DependencyTutorialStepModel> get steps;
   @override

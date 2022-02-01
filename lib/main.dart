@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dependeer/core/injections/get_it_configuration.dart';
@@ -8,15 +10,8 @@ import 'features/tutorial/dependency_tutorial_cubit/dependency_tutorial_cubit.da
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await windowManager.ensureInitialized();
   configureInjection('test');
-
-  windowManager.waitUntilReadyToShow().then((_) async {
-    await windowManager.setMinimumSize(const Size(600, 800));
-    await windowManager.setSize(const Size(1000, 800));
-
-    windowManager.show();
-  });
+  initDesktop();
   runApp(const MyApp());
 }
 
@@ -43,5 +38,17 @@ class MyApp extends StatelessWidget {
         child: const HomePage(),
       ),
     );
+  }
+}
+
+void initDesktop() async {
+  if (Platform.isMacOS || Platform.isWindows || Platform.isLinux) {
+    await windowManager.ensureInitialized();
+    windowManager.waitUntilReadyToShow().then((_) async {
+      await windowManager.setMinimumSize(const Size(600, 800));
+      await windowManager.setSize(const Size(1000, 800));
+
+      windowManager.show();
+    });
   }
 }

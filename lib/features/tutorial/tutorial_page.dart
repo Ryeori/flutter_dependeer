@@ -15,6 +15,7 @@ class TutorialPage extends StatelessWidget {
       ),
       body: DrapAndDropOverlay(
         title: 'Drop your own .json instruction file',
+        isProjectAlreadyLoaded: false,
         child: Center(
             child: Column(
           children: [

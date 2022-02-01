@@ -1,19 +1,13 @@
 part of 'home_cubit.dart';
 
-@immutable
-abstract class HomeState {}
-
-class HomeInitialState extends HomeState {}
-
-class HomeDependenciesLoadedState extends HomeState {
-  final String projectPath;
-  final PubspecyamlDtoModel pubspecyaml;
-  HomeDependenciesLoadedState(
-      {required this.projectPath, required this.pubspecyaml});
-}
-
-class HomeProjectErrorState extends HomeState {
-  final String errorText;
-
-  HomeProjectErrorState(this.errorText);
+@freezed
+class HomeState with _$HomeState {
+  const factory HomeState.initial() = _Initial;
+  const factory HomeState.projectDependenciesLoaded(
+      {required String projectPath,
+      required PubspecyamlDtoModel pubspecyaml}) = _ProjectDependenciesLoaded;
+  const factory HomeState.error(
+      {@Default('') String errorTitle,
+      @Default('') String errorMessage}) = _Error;
+  const factory HomeState.loading() = _Loading;
 }

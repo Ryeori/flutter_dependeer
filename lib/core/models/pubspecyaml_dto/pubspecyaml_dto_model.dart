@@ -8,7 +8,7 @@ part 'pubspecyaml_dto_model.freezed.dart';
 part 'pubspecyaml_dto_model.g.dart';
 
 @freezed
-abstract class PubspecyamlDtoModel with _$PubspecyamlDtoModel {
+class PubspecyamlDtoModel with _$PubspecyamlDtoModel {
   const factory PubspecyamlDtoModel({
     required String name,
     required String description,
@@ -24,7 +24,7 @@ abstract class PubspecyamlDtoModel with _$PubspecyamlDtoModel {
 }
 
 @freezed
-abstract class YamlDependency with _$YamlDependency {
+class YamlDependency with _$YamlDependency {
   const factory YamlDependency({
     required String title,
     required String version,
@@ -35,7 +35,7 @@ abstract class YamlDependency with _$YamlDependency {
 }
 
 @freezed
-abstract class Environment with _$Environment {
+class Environment with _$Environment {
   const factory Environment({
     required String sdk,
   }) = _Environment;

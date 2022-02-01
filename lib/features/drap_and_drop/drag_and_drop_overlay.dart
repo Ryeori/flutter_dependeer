@@ -6,6 +6,8 @@ class DrapAndDropOverlay extends StatefulWidget {
   final Function(DropDoneDetails details)? onDragDone;
   final Function(DropEventDetails details)? onDragExited;
   final Function(DropEventDetails details)? onDragUpdated;
+  //If we have already loaded project and we trying to load new one, the pop up will appear
+  final bool isProjectAlreadyLoaded;
   final double? width;
   final double? height;
   final Widget child;
@@ -18,6 +20,7 @@ class DrapAndDropOverlay extends StatefulWidget {
       this.onDragEntered,
       this.onDragExited,
       this.onDragUpdated,
+      required this.isProjectAlreadyLoaded,
       this.width,
       this.height,
       this.title,
@@ -88,13 +91,15 @@ class _DrapAndDropOverlayState extends State<DrapAndDropOverlay> {
           child: DropTarget(
               onDragDone: (details) async {
                 //TODO: separate logic
-                if (lastDroppedFile != null) {
+                if (lastDroppedFile != null && widget.isProjectAlreadyLoaded) {
                   if (!checkDroppedFilesEquality(details)) {
                     await showDialogOnFileChange().then((replaceWithNew) {
                       if (replaceWithNew) {
                         loadAndUpdateNewFile(details);
                       }
                     });
+                  } else {
+                    loadAndUpdateNewFile(details);
                   }
                 } else {
                   loadAndUpdateNewFile(details);
